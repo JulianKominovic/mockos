@@ -1,9 +1,10 @@
 const express = require("express");
-const authModule = require("../modules/auth");
+const collections = require("../modules/collections");
 const routes = () => {
   const router = express.Router();
-  router.all("/auth", authModule.routes());
+  router.all("/collections", collections.router());
 
+  router.all("*", (req, res) => res.send("404"));
   return router;
 };
 module.exports = {

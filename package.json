@@ -1,8 +1,10 @@
 {
   "dependencies": {
+    "@nextui-org/react": "1.0.0-beta.9",
     "concurrently": "^7.0.0"
   },
   "scripts": {
-    "start": "concurrently \"cd ./server && npm run server\" \"cd ./client && npm run dev\""
+    "dev:back": "cd ./server && pnpm run server",
+    "dev:front": "cd ./client && pnpm run dev"
   }
 }
