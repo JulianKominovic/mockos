@@ -1,8 +1,11 @@
+const { json } = require("express");
 const { routes } = require("./controller");
 
 const express = require("express"),
   PORT = 5000,
   app = express();
+
+app.use(json());
 
 app.use("/api/v1", routes());
 

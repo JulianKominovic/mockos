@@ -1,12 +1,10 @@
 import { Row, Col, Text } from "@nextui-org/react";
-import { Spacer } from "@nextui-org/react";
 import { Container } from "@nextui-org/react";
 import React from "react";
 
 const Header = () => {
   return (
     <Container
-      responsive
       alignItems="center"
       display="flex"
       css={{
@@ -14,6 +12,9 @@ const Header = () => {
         bgBlur: true,
         bgColor: "$black",
         height: "60px",
+        width: "100%",
+        margin: "0!important",
+        maxWidth: "unset",
       }}
     >
       <Row>

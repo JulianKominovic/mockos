@@ -1,6 +1,18 @@
+const StatusCode = require("./enums/StatusCode");
+
 module.exports = class Response {
   constructor() {
+    this.headers = JSON.stringify({});
+    this.statusCode = StatusCode[200];
     this.body = JSON.stringify({});
-    this.statusCode = 400;
+  }
+  setHeaders(json) {
+    this.headers = json;
+  }
+  setStatusCode(StatusCode = StatusCode[200]) {
+    this.statusCode = StatusCode;
+  }
+  setBody(json) {
+    this.body = JSON.stringify(json);
   }
 };

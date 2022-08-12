@@ -7,11 +7,6 @@ import { createTheme } from "@nextui-org/react";
 
 const theme = createTheme({
   type: "dark",
-  theme: {
-    colors: {
-      background: "#1c1e1c",
-    },
-  },
 });
 
 ReactDOM.render(

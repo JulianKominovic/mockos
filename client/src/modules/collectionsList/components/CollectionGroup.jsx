@@ -1,13 +1,14 @@
+import { Collapse } from "@nextui-org/react";
 import React from "react";
 import CollectionItem from "./CollectionItem";
 
-const CollectionGroup = ({ collections }) => {
+const CollectionGroup = ({ collections, title }) => {
   return (
-    <Collapse.Group>
+    <Collapse title={title} divider={false} animated>
       {collections.map((item) => (
-        <CollectionItem {...item} />
+        <CollectionItem {...item} key={item.id} />
       ))}
-    </Collapse.Group>
+    </Collapse>
   );
 };
 
