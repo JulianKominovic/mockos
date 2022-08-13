@@ -6,6 +6,7 @@ import { NextUIProvider } from "@nextui-org/react";
 import { createTheme } from "@nextui-org/react";
 import MockPreviewProvider from "./actions/mockPreview/store/mockpreview.store";
 import CollectionsProvider from "./actions/collections/store/collections.store";
+import AngryModeProvider from "./context/angryMode.context";
 
 const theme = createTheme({
   type: "dark",
@@ -16,7 +17,9 @@ ReactDOM.render(
     <NextUIProvider theme={theme}>
       <MockPreviewProvider>
         <CollectionsProvider>
-          <App />
+          <AngryModeProvider>
+            <App />
+          </AngryModeProvider>
         </CollectionsProvider>
       </MockPreviewProvider>
     </NextUIProvider>

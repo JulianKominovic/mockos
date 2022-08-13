@@ -5,6 +5,7 @@ module.exports = class Response {
     this.headers = JSON.stringify({});
     this.statusCode = StatusCode[200];
     this.body = JSON.stringify({});
+    this.responseType = "JSON";
   }
   setHeaders(json) {
     this.headers = json;
@@ -14,5 +15,8 @@ module.exports = class Response {
   }
   setBody(json) {
     this.body = JSON.stringify(json);
+  }
+  setResponseType(res) {
+    this.responseType = res;
   }
 };

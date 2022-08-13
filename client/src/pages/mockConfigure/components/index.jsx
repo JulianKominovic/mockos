@@ -4,23 +4,24 @@ import { Tooltip } from "@nextui-org/react";
 import { Button } from "@nextui-org/react";
 import { Grid } from "@nextui-org/react";
 import { Card } from "@nextui-org/react";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import Icon from "supercons";
 import { MODULE_COLOR } from "../config/constants";
 import { MockSettingsEditor } from "../../../modules/mockSettings";
 import "../styles/reset.css";
-import handleSubmit from "../logic/handleSubmit";
 import { mockPreviewContext } from "../../../actions/mockPreview/store/mockpreview.store";
 import { Image } from "@nextui-org/react";
 
 import NoMockPreviewing from "../../collections/components/NoMockPreviewing";
+import useHandleSubmit from "../logic/useHandleSubmit";
 
 const MockConfigure = () => {
   const { startNewMocko, isMockEditorActive, cancelNewMocko } =
     useContext(mockPreviewContext);
+  const { search } = useHandleSubmit();
 
   return (
-    <Card as="form" onSubmit={handleSubmit}>
+    <Card as="form" onSubmit={search}>
       <Card.Header>
         <Grid.Container alignItems="center" justify="space-between">
           <Grid

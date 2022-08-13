@@ -7,10 +7,11 @@ import billyMocos from "../../../assets/images/billy-moquito.webp";
 import PlusIcon from "@iconscout/react-unicons/icons/uil-plus-circle";
 import { Card } from "@nextui-org/react";
 import { mockPreviewContext } from "../../../actions/mockPreview/store/mockpreview.store";
+import { angryModeContext } from "../../../context/angryMode.context";
 
 const NoMockPreviewing = () => {
   const { startNewMocko } = useContext(mockPreviewContext);
-
+  const { angryMode } = useContext(angryModeContext);
   return (
     <Card css={{ my: "$6", py: "$6", alignItems: "center" }} variant="flat">
       <Text
@@ -22,14 +23,19 @@ const NoMockPreviewing = () => {
       >
         Creemos un Mocko
       </Text>
-      <Image
-        src={billyMocos}
-        alt="billy mocos"
-        css={{
-          borderRadius: "10px",
-        }}
-      />
-      <Spacer y={2}></Spacer>
+      {angryMode ? null : (
+        <>
+          <Image
+            src={billyMocos}
+            alt="billy mocos"
+            css={{
+              borderRadius: "10px",
+            }}
+          />
+          <Spacer y={2}></Spacer>
+        </>
+      )}
+
       <Text
         weight={"medium"}
         css={{
@@ -37,9 +43,11 @@ const NoMockPreviewing = () => {
         }}
       >
         Probá creando un Mocko nuevo
-        <Text weight={"light"} css={{ my: "0" }}>
-          (Para incluir en la nariz de Billy)
-        </Text>
+        {angryMode ? null : (
+          <Text weight={"light"} css={{ my: "0" }}>
+            (Para incluir en la nariz de Billy)
+          </Text>
+        )}
       </Text>
       <Button
         color={"success"}

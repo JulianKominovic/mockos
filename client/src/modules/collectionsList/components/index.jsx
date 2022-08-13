@@ -1,14 +1,13 @@
 import { Text } from "@nextui-org/react";
-import { Grid } from "@nextui-org/react";
-import React from "react";
-import useCollectionList from "../states/useCollectionList";
+import React, { useContext } from "react";
+import { collectionsContext } from "../../../actions/collections/store/collections.store";
 import CollectionGroup from "./CollectionGroup";
 
 const CollectionList = () => {
-  const { collection, setCollection } = useCollectionList();
+  const { collections } = useContext(collectionsContext);
   return (
     <>
-      {Object.entries(collection)?.map(([key, values]) => (
+      {Object.entries(collections)?.map(([key, values]) => (
         <CollectionGroup
           title={<Text size={18}>{key}</Text>}
           collections={values}

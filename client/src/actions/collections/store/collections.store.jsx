@@ -1,4 +1,5 @@
 import React from "react";
+import useCollections from "../hooks/useCollections";
 
 export const collectionsContext = React.createContext(null);
 

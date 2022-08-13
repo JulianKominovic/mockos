@@ -8,6 +8,7 @@ module.exports = async (filename = "") => {
       })
     );
   } catch (err) {
+    console.log(err);
     return {};
   }
 };

@@ -4,7 +4,7 @@ import Editor from "@monaco-editor/react";
 import chooseBorderColor from "../logic/chooseBorderColor";
 import useEditor from "../state/useEditor";
 
-function CodeEditor() {
+function CodeEditor({ initialValue }) {
   const { code, setCode, focused, setFocused, hasError } = useEditor();
   return (
     <>
@@ -14,9 +14,11 @@ function CodeEditor() {
         name="response_body"
         className={hasError ? "has-error" : ""}
         value={code}
+        defaultValue={initialValue}
         readOnly
       />
       <Editor
+        defaultValue={initialValue}
         onChange={setCode}
         name="response_body"
         language="json"

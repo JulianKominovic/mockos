@@ -24,9 +24,7 @@ const useForm = () => {
     };
     if (responseType === EnumResponseType.JSON) {
       try {
-        console.log(responseBodyvalue);
         JSON.parse(responseBodyvalue);
-        console.log("TODO OK");
         return response;
       } catch (err) {
         response.color = ERROR;

@@ -1,6 +1,28 @@
 const getCollections = require("./getCollections");
 const saveCollections = require("./saveCollections");
 
+const findMockInCollection = async (id) => {
+  const collections = await getCollections();
+  const collectionsKeys = Object.keys(collections);
+  const mockLocation = {
+    key: null,
+    foundIndex: null,
+  };
+
+  collectionsKeys.forEach((key) => {
+    const foundIndex = collections[key].findIndex((mock) => {
+      return mock.id === id;
+    });
+    if (foundIndex !== -1) {
+      console.log("ENCONTRADO EN INDEX " + foundIndex);
+      mockLocation.key = key;
+      mockLocation.foundIndex = foundIndex;
+    }
+  });
+
+  return mockLocation;
+};
+
 module.exports = {
   addMock: async (mock) => {
     const collections = await getCollections();
@@ -25,7 +47,7 @@ module.exports = {
   },
   replaceMock: async (newMock) => {
     const collections = await getCollections();
-    const collectionsKeys = Obejct.keys(collections);
+    const collectionsKeys = Object.keys(collections);
 
     collectionsKeys.forEach((key) => {
       const foundIndex = collections[key].findIndex((mock) => {
@@ -36,6 +58,18 @@ module.exports = {
       }
     });
 
+    return await saveCollections(collections);
+  },
+
+  updateMockActivationStatus: async (id, status) => {
+    const { key, foundIndex } = await findMockInCollection(id);
+    const collections = await getCollections();
+    if (key === null || foundIndex === null)
+      throw new Error(`ID=${id} - NOT FOUND`);
+    collections[key][foundIndex] = {
+      ...collections[key][foundIndex],
+      activated: status,
+    };
     return await saveCollections(collections);
   },
 };

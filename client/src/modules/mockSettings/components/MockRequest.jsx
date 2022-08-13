@@ -4,12 +4,15 @@ import { Radio } from "@nextui-org/react";
 import { Input } from "@nextui-org/react";
 import { Divider } from "@nextui-org/react";
 import { Card } from "@nextui-org/react";
-import React from "react";
+import React, { useContext } from "react";
+import { mockPreviewContext } from "../../../actions/mockPreview/store/mockpreview.store";
 import chooseMethodColor from "../../../utils/chooseMethodColor";
 import { INPUTS_STYLES } from "../config/constants";
 import { RADIO_BUTTONS } from "../config/FormConfig";
 
 const MockRequest = () => {
+  const { mockpreview } = useContext(mockPreviewContext);
+
   return (
     <Card variant="bordered">
       <Card.Header>
@@ -35,12 +38,13 @@ const MockRequest = () => {
             label="Mocko URL"
             name="url"
             required
+            initialValue={mockpreview?.url}
           />
         </Grid>
         <Grid>
           <Radio.Group
             label="Método"
-            defaultValue="GET"
+            defaultValue={mockpreview?.method || "GET"}
             orientation="horizontal"
             name="method"
             required

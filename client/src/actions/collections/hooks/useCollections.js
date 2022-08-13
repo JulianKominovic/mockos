@@ -3,12 +3,15 @@ import getCollections from "../../getCollections";
 
 const useCollections = () => {
   const [collections, setCollections] = useState({});
+  const [refreshSignal, setRefreshSignal] = useState(0);
 
   useEffect(() => {
     getCollections()
       .then((res) => setCollections(res))
       .catch((err) => console.log(err));
-  }, [refreshCollections]);
+  }, [refreshSignal]);
+
+  const refreshCollections = () => setRefreshSignal((prev) => prev + 1);
 
   return {
     collections,

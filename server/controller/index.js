@@ -4,11 +4,13 @@ const statuses = require("../modules/statuses");
 const mocks = require("../modules/mock");
 const routes = () => {
   const router = express.Router();
-  router.all("/collections", collections.router());
-  router.all("/statuses", statuses.router());
-  router.all("/mocks", mocks.router());
+  router.use("/collections", collections.router());
+  router.use("/statuses", statuses.router());
+  router.use("/mocks", mocks.router());
 
-  router.all("*", (req, res) => res.send("404"));
+  router.use("*", (req, res) => {
+    res.status(404).send("404");
+  });
   return router;
 };
 module.exports = {

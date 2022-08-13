@@ -1,20 +1,20 @@
 import { Input } from "@nextui-org/react";
 import { Spacer } from "@nextui-org/react";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { mockPreviewContext } from "../../../actions/mockPreview/store/mockpreview.store";
 import { INPUTS_STYLES } from "../config/constants";
 
 const MockMetadata = () => {
-  const { mockPreview } = useContext(mockPreviewContext);
+  const { mockpreview } = useContext(mockPreviewContext);
   return (
     <>
       <Spacer />
-      <input readOnly hidden name="id" value={mockPreview?.id || ""} />
+      <input readOnly hidden name="id" value={mockpreview?.id || ""} />
 
       <Input
         {...INPUTS_STYLES}
         name="name"
-        initialValue={mockPreview?.name}
+        initialValue={mockpreview?.name}
         css={{
           width: "100%",
           fontSize: "$xl4",
@@ -26,7 +26,7 @@ const MockMetadata = () => {
       <Spacer />
       <Input
         {...INPUTS_STYLES}
-        initialValue={mockPreview?.description}
+        initialValue={mockpreview?.description}
         name="description"
         css={{
           width: "100%",
@@ -38,7 +38,7 @@ const MockMetadata = () => {
       <Spacer />
       <Input
         {...INPUTS_STYLES}
-        initialValue={mockPreview?.collection}
+        initialValue={mockpreview?.collection}
         name="collection"
         css={{
           width: "100%",

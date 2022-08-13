@@ -1,5 +1,5 @@
 import useMockPreview from "../hooks/useMockPreview";
-import React, { useState } from "react";
+import React from "react";
 
 export const mockPreviewContext = React.createContext(null);
 

@@ -5,6 +5,7 @@ import { CollectionList } from "../../../modules/collectionsList";
 import { Grid } from "@nextui-org/react";
 import { Avatar } from "@nextui-org/react";
 import { Tooltip } from "@nextui-org/react";
+import { mockPreviewContext } from "../../../actions/mockPreview/store/mockpreview.store";
 
 const Collections = () => {
   return (

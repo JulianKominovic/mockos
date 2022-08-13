@@ -6,20 +6,20 @@ import { Radio } from "@nextui-org/react";
 import { Code } from "@nextui-org/react";
 import { Divider } from "@nextui-org/react";
 import { Card } from "@nextui-org/react";
-import React from "react";
+import React, { useContext } from "react";
+import { mockPreviewContext } from "../../../actions/mockPreview/store/mockpreview.store";
 import chooseStatusCodeColor from "../../../utils/chooseStatusCodeColor";
 import { CodeEditor } from "../../codeEditor";
-import { INPUTS_STYLES } from "../config/constants";
 import useForm from "../states/useForm";
 
 const MockResponse = () => {
   const {
     statuses,
-    responseBodybindings,
 
     setResponseType,
-    responseBodyStyles,
   } = useForm();
+  const { mockpreview } = useContext(mockPreviewContext);
+
   return (
     <Card variant="bordered">
       <Card.Header>
@@ -43,7 +43,7 @@ const MockResponse = () => {
 
             <Radio.Group
               label="Response type"
-              defaultValue="JSON"
+              defaultValue={mockpreview?.response?.responseType || "JSON"}
               onChange={setResponseType}
               orientation="horizontal"
               name="response_type"
@@ -60,7 +60,7 @@ const MockResponse = () => {
 
             <Radio.Group
               label="Status"
-              defaultValue={200}
+              defaultValue={+mockpreview?.response?.statusCode || 200}
               aria-required="true"
               name="response_status"
               required
@@ -82,7 +82,7 @@ const MockResponse = () => {
             </Radio.Group>
             <Spacer />
             <Spacer />
-            <CodeEditor />
+            <CodeEditor initialValue={mockpreview?.response?.body} />
           </Grid>
         </Grid.Container>
       </Card.Body>

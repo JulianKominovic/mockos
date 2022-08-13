@@ -1,5 +1,6 @@
 const EnumMethods = require("./enums/EnumMethods");
 const crypto = require("crypto");
+const Response = require("./Response");
 module.exports = class Mock {
   constructor() {
     this.id = crypto.randomUUID();

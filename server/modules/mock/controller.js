@@ -22,7 +22,20 @@ module.exports = {
         : await handleCollectionAccess.addMock(mocko);
       return res.send("OK");
     } catch (err) {
+      console.log(err);
       return res.send(err);
+    }
+  },
+  updateActivationStatus: async (req, res, status) => {
+    try {
+      await handleCollectionAccess.updateMockActivationStatus(
+        req.params.id,
+        status
+      );
+      return res.send("OK");
+    } catch (err) {
+      console.log(err);
+      return res.send("ERROR");
     }
   },
 };
