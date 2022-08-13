@@ -17,6 +17,7 @@ module.exports = {
     mocko.setResponse(reqBody?.response);
     mocko.setUrl(reqBody?.url);
     mocko.setCollection(reqBody?.collection);
+    reqBody?.activated ? mocko.activate() : mocko.deactivate();
 
     try {
       await handleCollectionAccess.addMock(mocko);

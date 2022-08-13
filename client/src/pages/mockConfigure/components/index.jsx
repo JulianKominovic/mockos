@@ -1,12 +1,15 @@
+import { Avatar } from "@nextui-org/react";
+import { Text } from "@nextui-org/react";
+import { Tooltip } from "@nextui-org/react";
+import { Button } from "@nextui-org/react";
+import { Row } from "@nextui-org/react";
+import { Grid } from "@nextui-org/react";
+import { Card } from "@nextui-org/react";
 import React from "react";
 import Icon from "supercons";
-import { Card, Row, Text, Button, Col } from "@nextui-org/react";
-import { CollectionList } from "../../../modules/collectionsList";
-import { Grid } from "@nextui-org/react";
-import { Avatar } from "@nextui-org/react";
-import { Tooltip } from "@nextui-org/react";
-
-const Collections = () => {
+import { MODULE_COLOR } from "../config/constants";
+import UrlBar from "./UrlBar";
+const MockConfigure = () => {
   return (
     <Card>
       <Card.Header>
@@ -18,9 +21,9 @@ const Collections = () => {
               gap: "$4",
             }}
           >
-            <Avatar icon={<Icon glyph="docs" />} color="primary" />
+            <Avatar icon={<Icon glyph="compass" />} color={MODULE_COLOR} />
             <Text b size={20}>
-              Collections
+              Mocko preview
             </Text>
           </Grid>
           <Grid
@@ -29,11 +32,11 @@ const Collections = () => {
             }}
           >
             <Tooltip
-              color={"primary"}
+              color={MODULE_COLOR}
               placement="right"
-              content="Crear collection"
+              content="Crear mocko"
             >
-              <Button auto rounded>
+              <Button auto rounded color={MODULE_COLOR}>
                 +
               </Button>
             </Tooltip>
@@ -42,7 +45,7 @@ const Collections = () => {
       </Card.Header>
       <Card.Divider />
       <Card.Body css={{ py: "0", overflowY: "auto" }}>
-        <CollectionList />
+        <UrlBar />
       </Card.Body>
       <Card.Divider />
       <Card.Footer>
@@ -52,4 +55,4 @@ const Collections = () => {
   );
 };
 
-export default Collections;
+export default MockConfigure;

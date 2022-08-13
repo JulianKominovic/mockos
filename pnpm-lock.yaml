@@ -3,10 +3,14 @@ lockfileVersion: 5.4
 specifiers:
   '@nextui-org/react': 1.0.0-beta.9
   concurrently: ^7.0.0
+  react-iconly: ^2.2.5
+  supercons: ^0.0.1
 
 dependencies:
   '@nextui-org/react': 1.0.0-beta.9
   concurrently: 7.3.0
+  react-iconly: 2.2.5
+  supercons: 0.0.1
 
 packages:
 
@@ -857,6 +861,13 @@ packages:
       react-is: 16.13.1
     dev: false
 
+  /react-iconly/2.2.5:
+    resolution: {integrity: sha512-c9WO/2TJltmyCVGj+/mdJZFoldfzYA8uUPmcml03D6YlBVWsCN5gq5Vb2k95qmeg+vSqMRvC69yghZvM0T4lKQ==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      react: ^16.8.6 || ^17
+    dev: false
+
   /react-is/16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
     dev: false
@@ -910,6 +921,12 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       ansi-regex: 5.0.1
+    dev: false
+
+  /supercons/0.0.1:
+    resolution: {integrity: sha512-ET70X83boPmv8ze9r5CuGXJCBZ9mbQ32RgE1CIwOX4K2hv9yA9mu8mtkt52VKER1PDZFSf5v/+9neLD5d1bFCQ==}
+    peerDependencies:
+      react: ^16.12.0 || ^17.0.1
     dev: false
 
   /supports-color/7.2.0:

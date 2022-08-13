@@ -13,10 +13,10 @@ module.exports = class Mock {
     this.activated = false;
   }
   activate() {
-    this.activate = true;
+    this.activated = true;
   }
   deactivate() {
-    this.activate = true;
+    this.activated = true;
   }
   setName(name) {
     this.name = name || "";
