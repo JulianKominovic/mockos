@@ -5,12 +5,8 @@ import { CollectionList } from "../../../modules/collectionsList";
 import { Grid } from "@nextui-org/react";
 import { Avatar } from "@nextui-org/react";
 import { Tooltip } from "@nextui-org/react";
-import { Image } from "@nextui-org/react";
-import billyMoquito from "../../../assets/images/billy-moquito.webp";
-import { mockPreviewContext } from "../../../actions/mockPreview/store/mockpreview.store";
 
 const Collections = () => {
-  const { startNewMocko } = useContext(mockPreviewContext);
   return (
     <Card>
       <Card.Header>
@@ -37,7 +33,7 @@ const Collections = () => {
               placement="right"
               content="Crear collection"
             >
-              <Button auto rounded onClick={startNewMocko}>
+              <Button auto rounded>
                 +
               </Button>
             </Tooltip>
@@ -45,7 +41,7 @@ const Collections = () => {
         </Grid.Container>
       </Card.Header>
       <Card.Divider />
-      <Card.Body css={{ py: "0", overflowY: "auto" }}>
+      <Card.Body css={{ py: "0", overflowY: "scroll" }}>
         <CollectionList />
       </Card.Body>
     </Card>

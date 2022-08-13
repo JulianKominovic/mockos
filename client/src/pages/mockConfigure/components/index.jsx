@@ -2,16 +2,23 @@ import { Avatar } from "@nextui-org/react";
 import { Text } from "@nextui-org/react";
 import { Tooltip } from "@nextui-org/react";
 import { Button } from "@nextui-org/react";
-import { Row } from "@nextui-org/react";
 import { Grid } from "@nextui-org/react";
 import { Card } from "@nextui-org/react";
-import React from "react";
+import React, { useContext } from "react";
 import Icon from "supercons";
 import { MODULE_COLOR } from "../config/constants";
-import { MockModuleConfigure } from "../../../modules/mockSettings/index";
+import { MockSettingsEditor } from "../../../modules/mockSettings";
 import "../styles/reset.css";
 import handleSubmit from "../logic/handleSubmit";
+import { mockPreviewContext } from "../../../actions/mockPreview/store/mockpreview.store";
+import { Image } from "@nextui-org/react";
+
+import NoMockPreviewing from "../../collections/components/NoMockPreviewing";
+
 const MockConfigure = () => {
+  const { startNewMocko, isMockEditorActive, cancelNewMocko } =
+    useContext(mockPreviewContext);
+
   return (
     <Card as="form" onSubmit={handleSubmit}>
       <Card.Header>
@@ -38,7 +45,7 @@ const MockConfigure = () => {
               placement="right"
               content="Crear mocko"
             >
-              <Button auto rounded color={MODULE_COLOR}>
+              <Button auto rounded color={MODULE_COLOR} onPress={startNewMocko}>
                 +
               </Button>
             </Tooltip>
@@ -47,32 +54,37 @@ const MockConfigure = () => {
       </Card.Header>
       <Card.Divider />
       <Card.Body css={{ py: "0", overflowY: "auto" }}>
-        <MockModuleConfigure />
+        {isMockEditorActive ? <MockSettingsEditor /> : <NoMockPreviewing />}
       </Card.Body>
       <Card.Divider />
-      <Card.Footer>
+      <Card.Footer css={{ py: "$10" }}>
         <Grid.Container wrap="nowrap" gap={1}>
           <Grid css={{ width: "100%" }}>
-            <Button
-              ghost
-              css={{ width: "100%" }}
-              type="clear"
-              color={"error"}
-              flat
-            >
-              Me arrepentí
-            </Button>
+            {isMockEditorActive ? (
+              <Button
+                ghost
+                css={{ width: "100%" }}
+                type="submit"
+                color="success"
+                flat
+              >
+                Crear Mocko
+              </Button>
+            ) : null}
           </Grid>
           <Grid css={{ width: "100%" }}>
-            <Button
-              ghost
-              css={{ width: "100%" }}
-              type="submit"
-              color="success"
-              flat
-            >
-              Crear Mocko
-            </Button>
+            {isMockEditorActive ? (
+              <Button
+                ghost
+                css={{ width: "100%" }}
+                type="clear"
+                color={"error"}
+                flat
+                onPress={cancelNewMocko}
+              >
+                Me arrepentí
+              </Button>
+            ) : null}
           </Grid>
         </Grid.Container>
       </Card.Footer>

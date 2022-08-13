@@ -1,12 +1,5 @@
-const fs = require("fs/promises");
-const path = require("path");
+const saveJson = require("../filesystem/saveJson");
 
 module.exports = async (collections) => {
-  return await fs.writeFile(
-    path.resolve("store/collections/collections.json"),
-    JSON.stringify(collections),
-    {
-      encoding: "utf-8",
-    }
-  );
+  return await saveJson("collections", collections);
 };

@@ -1,3 +1,3 @@
-import MockModuleConfigure from "./components";
+import MockSettingsEditor from "./components";
 
-export { MockModuleConfigure };
+export { MockSettingsEditor };

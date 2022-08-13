@@ -3,10 +3,22 @@ import { useState } from "react";
 const useMockPreview = () => {
   const [mockpreview, setMockpreview] = useState({});
 
-  const setNewMockPreview = (mock) => setMockpreview(mock);
-  const startNewMocko = () => setMockpreview({});
+  const isMockEditorActive = Object.keys(mockpreview)?.length > 0;
 
-  return { mockpreview, setNewMockPreview, startNewMocko };
+  const setNewMockPreview = (mock) => setMockpreview(mock);
+  const cancelNewMocko = () => setMockpreview({});
+  const startNewMocko = () =>
+    setMockpreview({
+      name: "Nuevo mockito",
+    });
+
+  return {
+    mockpreview,
+    setNewMockPreview,
+    startNewMocko,
+    isMockEditorActive,
+    cancelNewMocko,
+  };
 };
 
 export default useMockPreview;

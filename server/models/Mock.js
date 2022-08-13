@@ -12,6 +12,9 @@ module.exports = class Mock {
     this.timestamp = new Date();
     this.activated = false;
   }
+  setId(id) {
+    this.id = id;
+  }
   activate() {
     this.activated = true;
   }

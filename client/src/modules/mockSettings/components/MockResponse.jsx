@@ -3,10 +3,12 @@ import { Grid } from "@nextui-org/react";
 import { Textarea } from "@nextui-org/react";
 import { Spacer } from "@nextui-org/react";
 import { Radio } from "@nextui-org/react";
+import { Code } from "@nextui-org/react";
 import { Divider } from "@nextui-org/react";
 import { Card } from "@nextui-org/react";
 import React from "react";
 import chooseStatusCodeColor from "../../../utils/chooseStatusCodeColor";
+import { CodeEditor } from "../../codeEditor";
 import { INPUTS_STYLES } from "../config/constants";
 import useForm from "../states/useForm";
 
@@ -27,7 +29,7 @@ const MockResponse = () => {
       <Card.Body>
         <Grid.Container wrap="nowrap">
           <Grid css={{ width: "100%" }}>
-            <Textarea
+            {/* <Textarea
               {...INPUTS_STYLES}
               {...responseBodybindings}
               color={responseBodyStyles.color}
@@ -37,9 +39,8 @@ const MockResponse = () => {
               placeholder="Description"
               css={{ width: "100%" }}
               label="Response body"
-            />
-            <Spacer />
-            <Spacer />
+            /> */}
+
             <Radio.Group
               label="Response type"
               defaultValue="JSON"
@@ -59,8 +60,10 @@ const MockResponse = () => {
 
             <Radio.Group
               label="Status"
-              defaultValue="200"
-              orientation="horizontal"
+              defaultValue={200}
+              aria-required="true"
+              name="response_status"
+              required
             >
               {statuses.map((statusCode) => {
                 const color = chooseStatusCodeColor(statusCode.code);
@@ -77,6 +80,9 @@ const MockResponse = () => {
                 );
               })}
             </Radio.Group>
+            <Spacer />
+            <Spacer />
+            <CodeEditor />
           </Grid>
         </Grid.Container>
       </Card.Body>

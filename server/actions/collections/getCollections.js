@@ -1,10 +1,4 @@
-const fs = require("fs/promises");
-const path = require("path");
-
+const readJson = require("../filesystem/readJson");
 module.exports = async () => {
-  return JSON.parse(
-    await fs.readFile(path.resolve("store/collections/collections.json"), {
-      encoding: "utf-8",
-    })
-  );
+  return await readJson("collections");
 };

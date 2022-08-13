@@ -31,11 +31,10 @@ const MockRequest = () => {
             shadow={false}
             placeholder="Podés usar expresiones REGEX"
             width="100%"
-            labelLeft="http://"
-            type={"url"}
             {...INPUTS_STYLES}
             label="Mocko URL"
             name="url"
+            required
           />
         </Grid>
         <Grid>
@@ -44,6 +43,7 @@ const MockRequest = () => {
             defaultValue="GET"
             orientation="horizontal"
             name="method"
+            required
           >
             {RADIO_BUTTONS.map((button) => {
               const color = chooseMethodColor(button.value);

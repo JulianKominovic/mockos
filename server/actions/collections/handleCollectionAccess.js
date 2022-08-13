@@ -4,7 +4,7 @@ const saveCollections = require("./saveCollections");
 module.exports = {
   addMock: async (mock) => {
     const collections = await getCollections();
-    console.log(mock.collection);
+
     if (mock.collection) {
       if (
         collections[mock.collection] &&
@@ -20,6 +20,21 @@ module.exports = {
         ? collections["no-collection"].push(mock)
         : (collections["no-collection"] = [mock]);
     }
+
+    return await saveCollections(collections);
+  },
+  replaceMock: async (newMock) => {
+    const collections = await getCollections();
+    const collectionsKeys = Obejct.keys(collections);
+
+    collectionsKeys.forEach((key) => {
+      const foundIndex = collections[key].findIndex((mock) => {
+        return mock.id === newMock.id;
+      });
+      if (foundIndex !== -1) {
+        collections[key][foundIndex] = newMock;
+      }
+    });
 
     return await saveCollections(collections);
   },

@@ -9,17 +9,19 @@ const MockMetadata = () => {
   return (
     <>
       <Spacer />
+      <input readOnly hidden name="id" value={mockPreview?.id || ""} />
 
       <Input
         {...INPUTS_STYLES}
         name="name"
-        initialValue={mockPreview?.name || "Nuevo mocko"}
+        initialValue={mockPreview?.name}
         css={{
           width: "100%",
           fontSize: "$xl4",
         }}
         labelLeft="Titulo"
         size={"xl"}
+        required
       />
       <Spacer />
       <Input
