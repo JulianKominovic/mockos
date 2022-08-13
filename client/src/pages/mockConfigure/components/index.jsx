@@ -8,10 +8,12 @@ import { Card } from "@nextui-org/react";
 import React from "react";
 import Icon from "supercons";
 import { MODULE_COLOR } from "../config/constants";
-import UrlBar from "./UrlBar";
+import { MockModuleConfigure } from "../../../modules/mockSettings/index";
+import "../styles/reset.css";
+import handleSubmit from "../logic/handleSubmit";
 const MockConfigure = () => {
   return (
-    <Card>
+    <Card as="form" onSubmit={handleSubmit}>
       <Card.Header>
         <Grid.Container alignItems="center" justify="space-between">
           <Grid
@@ -45,11 +47,34 @@ const MockConfigure = () => {
       </Card.Header>
       <Card.Divider />
       <Card.Body css={{ py: "0", overflowY: "auto" }}>
-        <UrlBar />
+        <MockModuleConfigure />
       </Card.Body>
       <Card.Divider />
       <Card.Footer>
-        <Row justify="flex-end"></Row>
+        <Grid.Container wrap="nowrap" gap={1}>
+          <Grid css={{ width: "100%" }}>
+            <Button
+              ghost
+              css={{ width: "100%" }}
+              type="clear"
+              color={"error"}
+              flat
+            >
+              Me arrepentí
+            </Button>
+          </Grid>
+          <Grid css={{ width: "100%" }}>
+            <Button
+              ghost
+              css={{ width: "100%" }}
+              type="submit"
+              color="success"
+              flat
+            >
+              Crear Mocko
+            </Button>
+          </Grid>
+        </Grid.Container>
       </Card.Footer>
     </Card>
   );

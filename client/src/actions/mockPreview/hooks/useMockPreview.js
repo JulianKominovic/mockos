@@ -1,9 +1,12 @@
+import { useState } from "react";
+
 const useMockPreview = () => {
   const [mockpreview, setMockpreview] = useState({});
-  const getMockPreview = () => mockpreview;
-  const setNewMockPreview = (mock) => setMockpreview(mock);
 
-  return { getMockPreview, setNewMockPreview };
+  const setNewMockPreview = (mock) => setMockpreview(mock);
+  const startNewMocko = () => setMockpreview({});
+
+  return { mockpreview, setNewMockPreview, startNewMocko };
 };
 
 export default useMockPreview;

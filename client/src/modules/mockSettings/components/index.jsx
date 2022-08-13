@@ -1,7 +1,12 @@
 import React from "react";
+import MockHeaders from "./MockHeaders";
 
 const MockSettings = () => {
-  return <div>MockSettings</div>;
+  return (
+    <>
+      <MockHeaders />
+    </>
+  );
 };
 
 export default MockSettings;

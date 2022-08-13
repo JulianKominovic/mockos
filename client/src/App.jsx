@@ -13,7 +13,7 @@ function App() {
         <Grid xs={4}>
           <Collections />
         </Grid>
-        <Grid xs={8}>
+        <Grid xs={9}>
           <MockConfigure />
         </Grid>
         <Grid xs={6}></Grid>

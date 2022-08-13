@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App";
 import { NextUIProvider } from "@nextui-org/react";
 import { createTheme } from "@nextui-org/react";
+import MockPreviewProvider from "./actions/mockPreview/store/mockpreview.store";
 
 const theme = createTheme({
   type: "dark",
@@ -12,7 +13,9 @@ const theme = createTheme({
 ReactDOM.render(
   <React.StrictMode>
     <NextUIProvider theme={theme}>
-      <App />
+      <MockPreviewProvider>
+        <App />
+      </MockPreviewProvider>
     </NextUIProvider>
   </React.StrictMode>,
   document.getElementById("root")

@@ -1,30 +1,30 @@
 import React from "react";
 
 import { Collapse, Text, Switch, Row, Col, Button } from "@nextui-org/react";
-import chooseMethodColor from "../utils/chooseMethodColor";
+import chooseMethodColor from "../../../utils/chooseMethodColor";
 import { Link } from "@nextui-org/react";
 import { Grid } from "@nextui-org/react";
 import { Tooltip } from "@nextui-org/react";
-import Icon from "supercons";
+import "../styles/reset.css";
 
 const CollectionItem = ({ name, url, method, activated, description }) => {
   const colorVariant = chooseMethodColor(method);
   const chooseItemName = name || url;
-  const sliceItemName = chooseItemName?.slice(0, 14);
+  const sliceItemName = chooseItemName?.slice(0, 20);
   return (
     <Grid.Container align="center" justify="flex-start" wrap="nowrap">
       <Grid>
-        {" "}
         <Switch
           animated
-          size={"xl"}
+          size={"lg"}
           checked={activated}
           bordered
           color={colorVariant}
         />
       </Grid>
-      <Grid css={{ width: "100%" }}>
+      <Grid css={{ width: "100%", marginInlineStart: "$10" }}>
         <Tooltip
+          className="w-100__button__inner-div"
           content={
             <>
               <Text>{description}</Text>
@@ -37,7 +37,6 @@ const CollectionItem = ({ name, url, method, activated, description }) => {
           hideArrow
         >
           <Button
-            className="w-100__button__inner-div"
             color={colorVariant}
             flat
             css={{ justifyContent: "flex-end", width: "100%" }}
@@ -47,7 +46,7 @@ const CollectionItem = ({ name, url, method, activated, description }) => {
               </Link>
             }
           >
-            {chooseItemName.length > 14 ? sliceItemName + "..." : sliceItemName}
+            {chooseItemName.length > 20 ? sliceItemName + "..." : sliceItemName}
           </Button>
         </Tooltip>
       </Grid>

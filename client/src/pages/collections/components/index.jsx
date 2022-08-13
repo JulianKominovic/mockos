@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import Icon from "supercons";
 import { Card, Row, Text, Button, Col } from "@nextui-org/react";
 import { CollectionList } from "../../../modules/collectionsList";
 import { Grid } from "@nextui-org/react";
 import { Avatar } from "@nextui-org/react";
 import { Tooltip } from "@nextui-org/react";
+import { Image } from "@nextui-org/react";
+import billyMoquito from "../../../assets/images/billy-moquito.webp";
+import { mockPreviewContext } from "../../../actions/mockPreview/store/mockpreview.store";
 
 const Collections = () => {
+  const { startNewMocko } = useContext(mockPreviewContext);
   return (
     <Card>
       <Card.Header>
@@ -33,7 +37,7 @@ const Collections = () => {
               placement="right"
               content="Crear collection"
             >
-              <Button auto rounded>
+              <Button auto rounded onClick={startNewMocko}>
                 +
               </Button>
             </Tooltip>
@@ -44,10 +48,6 @@ const Collections = () => {
       <Card.Body css={{ py: "0", overflowY: "auto" }}>
         <CollectionList />
       </Card.Body>
-      <Card.Divider />
-      <Card.Footer>
-        <Row justify="flex-end"></Row>
-      </Card.Footer>
     </Card>
   );
 };
