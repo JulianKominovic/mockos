@@ -8,7 +8,6 @@ import PlusIcon from "@iconscout/react-unicons/icons/uil-plus-circle";
 import { Card } from "@nextui-org/react";
 import { mockPreviewContext } from "../../../actions/mockPreview/store/mockpreview.store";
 import { angryModeContext } from "../../../context/angryMode.context";
-import CreationModal from "./CreationModal";
 
 const NoMockPreviewing = () => {
   const { startNewMocko } = useContext(mockPreviewContext);

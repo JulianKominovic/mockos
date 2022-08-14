@@ -44,8 +44,9 @@ const removeProxyCommand = async (src) => {
 };
 
 const verifyPortRange = (src) => {
+  console.log(src);
   const formattedSrc = +src;
-  if (!formattedSrc) throw new Error(`Add proxy - No Source`);
+  if (!formattedSrc) throw new Error(`Add proxy - No Source - Received ${src}`);
   if (!(formattedSrc >= 3000 && formattedSrc <= 10000))
     throw new Error(`Add proxy - PORT [${formattedSrc}] - Port out of range`);
   return formattedSrc;

@@ -25,9 +25,7 @@ module.exports = {
       reqBody?.id
         ? await handleCollectionAccess.replaceMock(mocko)
         : await handleCollectionAccess.addMock(mocko);
-      console.log("NEW PORT ADDED");
-      console.log(url.parse(reqBody?.url).port);
-      addProxy(url.parse(reqBody?.url).port);
+
       return res.send("OK");
     } catch (err) {
       console.log(err);
@@ -42,10 +40,7 @@ module.exports = {
           status
         );
       if (!updatedMock) throw new Error("Error en el mock updateado");
-      console.log(updatedMock);
-      const port = url.parse(updatedMock.url).port;
 
-      status ? addProxy(port) : removeProxy(port);
       return res.send("OK");
     } catch (err) {
       console.log(err);
@@ -54,6 +49,7 @@ module.exports = {
   },
   deleteMock: async (req, res) => {
     await deleteMock(req.params.id);
+
     return res.send("OK");
   },
 };

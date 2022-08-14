@@ -10,7 +10,7 @@ function App() {
     <>
       <Header />
       <Grid.Container gap={2} css={{ height: "100%" }} wrap="nowrap">
-        <Grid xs={4}>
+        <Grid xs={5}>
           <Collections />
         </Grid>
         <Grid xs={9}>

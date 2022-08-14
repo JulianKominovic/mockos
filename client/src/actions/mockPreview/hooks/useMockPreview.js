@@ -8,10 +8,12 @@ const useMockPreview = () => {
     setMockpreview(mock);
   };
   const cancelNewMocko = () => setMockpreview({});
-  const startNewMocko = () =>
+  const startNewMocko = (collection) => {
     setMockpreview({
       name: "Nuevo mockito",
+      collection,
     });
+  };
 
   return {
     mockpreview,

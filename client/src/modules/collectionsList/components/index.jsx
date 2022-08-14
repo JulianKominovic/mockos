@@ -1,3 +1,4 @@
+import { Button } from "@nextui-org/react";
 import { Text } from "@nextui-org/react";
 import React, { useContext } from "react";
 import { collectionsContext } from "../../../actions/collections/store/collections.store";
@@ -7,13 +8,16 @@ const CollectionList = () => {
   const { collections } = useContext(collectionsContext);
   return (
     <>
-      {Object.entries(collections)?.map(([key, values]) => (
-        <CollectionGroup
-          title={<Text size={18}>{key}</Text>}
-          collections={values}
-          key={key}
-        />
-      ))}
+      {Object.entries(collections)?.map(([key, values]) => {
+        return (
+          <CollectionGroup
+            rawTitle={key}
+            title={<Text size={18}>{key}</Text>}
+            collections={values}
+            key={key}
+          />
+        );
+      })}
     </>
   );
 };

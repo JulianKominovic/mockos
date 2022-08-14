@@ -7,25 +7,32 @@ import { Avatar } from "@nextui-org/react";
 import { Tooltip } from "@nextui-org/react";
 import { mockPreviewContext } from "../../../actions/mockPreview/store/mockpreview.store";
 import createCollection from "../../../actions/collections/createCollection";
-import CreationModal from "./CreationModal";
 import { collectionsContext } from "../../../actions/collections/store/collections.store";
+import deleteCollection from "../../../actions/collections/deleteCollection";
+import CustomModal from "./Modal";
 
 const Collections = () => {
   const [visible, setVisible] = useState(false);
+
   const { refreshCollections } = useContext(collectionsContext);
   return (
     <Card>
-      <CreationModal
+      <CustomModal
+        title={"Crear colección"}
         visible={visible}
         setVisible={setVisible}
-        onSubmit={(value) => {
-          if (value)
-            createCollection(value)
+        onSubmit={({ new_collection }) => {
+          if (new_collection)
+            createCollection(new_collection)
               .then((res) => console.log(res))
               .catch((err) => console.log(err))
-              .finally(() => refreshCollections());
+              .finally(() => {
+                setVisible(false);
+                refreshCollections();
+              });
         }}
       />
+
       <Card.Header>
         <Grid.Container alignItems="center" justify="space-between">
           <Grid
