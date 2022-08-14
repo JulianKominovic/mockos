@@ -8,11 +8,12 @@ import { Tooltip } from "@nextui-org/react";
 import "../styles/reset.css";
 import { mockPreviewContext } from "../../../actions/mockPreview/store/mockpreview.store";
 import refreshActivationStatus from "../../../actions/mocks/refreshActivationStatus";
+import { collectionsContext } from "../../../actions/collections/store/collections.store";
 
 const CollectionItem = (mock) => {
   const { id, name, url, method, activated, description } = mock;
   const { setNewMockPreview } = useContext(mockPreviewContext);
-
+  const { refreshCollections } = useContext(collectionsContext);
   const colorVariant = chooseMethodColor(method);
   const chooseItemName = name || url || id;
   const sliceItemName = chooseItemName?.slice(0, 16);
@@ -23,7 +24,8 @@ const CollectionItem = (mock) => {
           onChange={(e) => {
             refreshActivationStatus(mock, e.target.checked)
               .then(() => console.log("OK"))
-              .catch((err) => console.log(err));
+              .catch((err) => console.log(err))
+              .finally(() => refreshCollections());
           }}
           animated
           size={"lg"}

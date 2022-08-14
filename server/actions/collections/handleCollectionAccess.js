@@ -1,5 +1,6 @@
 const getCollections = require("./getCollections");
 const saveCollections = require("./saveCollections");
+const url = require("url");
 
 const findMockInCollection = async (id) => {
   const collections = await getCollections();
@@ -70,6 +71,36 @@ module.exports = {
       ...collections[key][foundIndex],
       activated: status,
     };
-    return await saveCollections(collections);
+    await saveCollections(collections);
+    return collections[key][foundIndex];
+  },
+
+  getAllPortsOfActive: async (path) => {
+    const collections = await getCollections(path);
+    const ports = [];
+
+    Object.values(collections)
+      .flat()
+      .forEach((mock) => {
+        if (!mock.url || typeof mock.url !== "string" || !mock.activated)
+          return;
+        const { port } = url.parse(mock.url);
+        if (port >= 3000 && port <= 10000) {
+          ports.push(port);
+        }
+      });
+
+    return ports;
+  },
+
+  getActiveMocksByMethodAndUrl: async (method, url, path) => {
+    const collections = await getCollections(path);
+
+    return Object.values(collections)
+      .flat()
+      .filter(
+        (collect) =>
+          collect.activated && collect.method === method && collect.url === url
+      );
   },
 };

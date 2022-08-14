@@ -1,4 +1,4 @@
 const readJson = require("../filesystem/readJson");
-module.exports = async () => {
-  return await readJson("collections");
+module.exports = async (path) => {
+  return await readJson("collections", path);
 };

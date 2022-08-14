@@ -1,10 +1,8 @@
 const formatter = (req) => {
   const { method, body, url } = req;
-  return `[REQUEST INCOMING] [URL=${url}] [METHOD=${method}] [BODY=${JSON.stringify(
-    body,
-    null,
-    2
-  )}]`;
+  return `[REQUEST INCOMING] [ORIGIN=${req.get(
+    "host"
+  )}] [URL=${url}] [METHOD=${method}] [BODY=${JSON.stringify(body, null, 2)}]`;
 };
 module.exports = {
   info: () => {

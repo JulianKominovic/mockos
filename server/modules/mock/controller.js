@@ -1,5 +1,7 @@
 const handleCollectionAccess = require("../../actions/collections/handleCollectionAccess");
 const Mock = require("../../models/Mock");
+const { addProxy, removeProxy } = require("../../proxy/cli");
+const url = require("url");
 
 module.exports = {
   post: async (req, res) => {
@@ -28,14 +30,20 @@ module.exports = {
   },
   updateActivationStatus: async (req, res, status) => {
     try {
-      await handleCollectionAccess.updateMockActivationStatus(
-        req.params.id,
-        status
-      );
+      const updatedMock =
+        await handleCollectionAccess.updateMockActivationStatus(
+          req.params.id,
+          status
+        );
+      if (!updatedMock) throw new Error("Error en el mock updateado");
+      console.log(updatedMock);
+      const port = url.parse(updatedMock.url).port;
+
+      status ? addProxy(port) : removeProxy(port);
       return res.send("OK");
     } catch (err) {
       console.log(err);
-      return res.send("ERROR");
+      return res.send("ERROR UPDATING MOCK STATUS");
     }
   },
 };

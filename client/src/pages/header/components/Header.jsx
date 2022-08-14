@@ -19,7 +19,7 @@ const Header = () => {
       css={{
         backdropFilter: "blur(10px)",
         bgBlur: true,
-        bgColor: "$black",
+        bgColor: "$gray50",
         height: "60px",
         width: "100%",
         margin: "0!important",

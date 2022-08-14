@@ -1,5 +1,5 @@
 export default (term = "", method = "", payload) =>
-  fetch("/api/v1/mocks" + term, {
+  fetch("/mocko/mocks" + term, {
     method: method || "GET",
     headers: {
       "Content-Type": "application/json",
