@@ -2,16 +2,18 @@ import { Text } from "@nextui-org/react";
 import { Spacer } from "@nextui-org/react";
 import { Button } from "@nextui-org/react";
 import { Image } from "@nextui-org/react";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import billyMocos from "../../../assets/images/billy-moquito.webp";
 import PlusIcon from "@iconscout/react-unicons/icons/uil-plus-circle";
 import { Card } from "@nextui-org/react";
 import { mockPreviewContext } from "../../../actions/mockPreview/store/mockpreview.store";
 import { angryModeContext } from "../../../context/angryMode.context";
+import CreationModal from "./CreationModal";
 
 const NoMockPreviewing = () => {
   const { startNewMocko } = useContext(mockPreviewContext);
   const { angryMode } = useContext(angryModeContext);
+
   return (
     <Card css={{ my: "$6", py: "$6", alignItems: "center" }} variant="flat">
       <Text

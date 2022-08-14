@@ -2,6 +2,9 @@ const handleCollectionAccess = require("../../actions/collections/handleCollecti
 const Mock = require("../../models/Mock");
 const { addProxy, removeProxy } = require("../../proxy/cli");
 const url = require("url");
+const {
+  deleteMock,
+} = require("../../actions/collections/handleCollectionAccess");
 
 module.exports = {
   post: async (req, res) => {
@@ -22,6 +25,9 @@ module.exports = {
       reqBody?.id
         ? await handleCollectionAccess.replaceMock(mocko)
         : await handleCollectionAccess.addMock(mocko);
+      console.log("NEW PORT ADDED");
+      console.log(url.parse(reqBody?.url).port);
+      addProxy(url.parse(reqBody?.url).port);
       return res.send("OK");
     } catch (err) {
       console.log(err);
@@ -45,5 +51,9 @@ module.exports = {
       console.log(err);
       return res.send("ERROR UPDATING MOCK STATUS");
     }
+  },
+  deleteMock: async (req, res) => {
+    await deleteMock(req.params.id);
+    return res.send("OK");
   },
 };

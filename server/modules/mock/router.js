@@ -9,6 +9,7 @@ const router = () => {
   Router.get("/disable/:id", (req, res) =>
     controller.updateActivationStatus(req, res, false)
   );
+  Router.delete("/:id", (req, res) => controller.deleteMock(req, res));
 
   return Router;
 };

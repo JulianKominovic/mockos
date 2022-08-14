@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Icon from "supercons";
 import { Card, Row, Text, Button, Col } from "@nextui-org/react";
 import { CollectionList } from "../../../modules/collectionsList";
@@ -6,10 +6,26 @@ import { Grid } from "@nextui-org/react";
 import { Avatar } from "@nextui-org/react";
 import { Tooltip } from "@nextui-org/react";
 import { mockPreviewContext } from "../../../actions/mockPreview/store/mockpreview.store";
+import createCollection from "../../../actions/collections/createCollection";
+import CreationModal from "./CreationModal";
+import { collectionsContext } from "../../../actions/collections/store/collections.store";
 
 const Collections = () => {
+  const [visible, setVisible] = useState(false);
+  const { refreshCollections } = useContext(collectionsContext);
   return (
     <Card>
+      <CreationModal
+        visible={visible}
+        setVisible={setVisible}
+        onSubmit={(value) => {
+          if (value)
+            createCollection(value)
+              .then((res) => console.log(res))
+              .catch((err) => console.log(err))
+              .finally(() => refreshCollections());
+        }}
+      />
       <Card.Header>
         <Grid.Container alignItems="center" justify="space-between">
           <Grid
@@ -34,7 +50,13 @@ const Collections = () => {
               placement="right"
               content="Crear collection"
             >
-              <Button auto rounded>
+              <Button
+                auto
+                rounded
+                onClick={() => {
+                  setVisible(true);
+                }}
+              >
                 +
               </Button>
             </Tooltip>

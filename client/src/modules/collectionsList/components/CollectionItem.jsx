@@ -9,6 +9,8 @@ import "../styles/reset.css";
 import { mockPreviewContext } from "../../../actions/mockPreview/store/mockpreview.store";
 import refreshActivationStatus from "../../../actions/mocks/refreshActivationStatus";
 import { collectionsContext } from "../../../actions/collections/store/collections.store";
+import Icon from "supercons";
+import deleteMock from "../../../actions/mocks/delete";
 
 const CollectionItem = (mock) => {
   const { id, name, url, method, activated, description } = mock;
@@ -18,7 +20,7 @@ const CollectionItem = (mock) => {
   const chooseItemName = name || url || id;
   const sliceItemName = chooseItemName?.slice(0, 16);
   return (
-    <Grid.Container align="center" justify="flex-start" wrap="nowrap">
+    <Grid.Container align="center" justify="flex-start" wrap="nowrap" gap={0.2}>
       <Grid>
         <Switch
           onChange={(e) => {
@@ -34,7 +36,20 @@ const CollectionItem = (mock) => {
           color={colorVariant}
         />
       </Grid>
-      <Grid css={{ width: "100%", marginInlineStart: "$10" }}>
+      <Grid>
+        <Button
+          color={"error"}
+          auto
+          size={"md"}
+          flat
+          onClick={() => {
+            deleteMock(id).finally(() => refreshCollections());
+          }}
+        >
+          <Icon glyph="delete" size="26px" />
+        </Button>
+      </Grid>
+      <Grid css={{ width: "100%", marginInlineStart: "$2" }}>
         {description ? (
           <Tooltip
             className="w-100__button__inner-div"

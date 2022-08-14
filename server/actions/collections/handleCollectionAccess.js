@@ -25,6 +25,11 @@ const findMockInCollection = async (id) => {
 };
 
 module.exports = {
+  addCollection: async (collectionName) => {
+    const collections = await getCollections();
+    collections[collectionName] = [];
+    return await saveCollections(collections);
+  },
   addMock: async (mock) => {
     const collections = await getCollections();
 
@@ -61,7 +66,20 @@ module.exports = {
 
     return await saveCollections(collections);
   },
-
+  deleteMock: async (id) => {
+    const collections = await getCollections();
+    const collectionsKeys = Object.keys(collections);
+    collectionsKeys.forEach((key) => {
+      const foundIndex = collections[key].findIndex((mock) => {
+        return mock.id === id;
+      });
+      if (foundIndex !== -1) {
+        collections[key] = collections[key].filter((mocko) => mocko.id !== id);
+        if (collections[key].length === 0) delete collections[key];
+      }
+    });
+    return await saveCollections(collections);
+  },
   updateMockActivationStatus: async (id, status) => {
     const { key, foundIndex } = await findMockInCollection(id);
     const collections = await getCollections();

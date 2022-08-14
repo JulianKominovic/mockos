@@ -21,8 +21,10 @@ const sudoAutoPassword = () =>
   `echo ${process.env.LINUX_PASSWORD} | sudo -S -k`;
 
 const addProxyCommand = async (src) => {
+  console.log("+ ADDING PORT FORWARDING RULES");
+  console.log(`FOR PORT => ${src}`);
   await spawnCommand(
-    `${sudoAutoPassword()} iptables -t nat -L -n -v | grep "6000" || ${sudoAutoPassword()} iptables -t nat -A OUTPUT -o lo -p tcp --dport ${src} -j REDIRECT --to-port 5000`
+    `${sudoAutoPassword()} iptables -t nat -L -n -v | grep "${src}" || ${sudoAutoPassword()} iptables -t nat -A OUTPUT -o lo -p tcp --dport ${src} -j REDIRECT --to-port 5000`
   );
   const ports = fileSystem.read();
   if (ports?.findIndex((p) => p === src) === -1) ports?.push(src);
@@ -30,7 +32,7 @@ const addProxyCommand = async (src) => {
 };
 
 const removeProxyCommand = async (src) => {
-  console.log("REMOVING PORT FORWARDING RULES");
+  console.log("- REMOVING PORT FORWARDING RULES");
   console.log(`FOR PORT => ${src}`);
 
   await spawnCommand(
@@ -51,9 +53,11 @@ const verifyPortRange = (src) => {
 
 module.exports = {
   addProxy: (src) => {
-    addProxyCommand(verifyPortRange(src));
+    addProxyCommand(verifyPortRange(src)).catch((err) => console.log(err));
   },
   removeProxy: async (src) => {
-    return await removeProxyCommand(verifyPortRange(src));
+    return await removeProxyCommand(verifyPortRange(src)).catch((err) =>
+      console.log(err)
+    );
   },
 };
