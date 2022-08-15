@@ -11,22 +11,7 @@ const router = () => {
   const Router = express.Router();
 
   Router.use("*", (req, res, next) => controller.checkOrigin(req, res, next));
-  Router.get("*", async (req, res) => {
-    const fullUrl = req.protocol + "://" + req.get("host") + req.originalUrl;
-    const mock = await getActiveMocksByMethodAndUrl(EnumMethods.GET, fullUrl);
-
-    if (!mock) {
-      return res.status(400).send("No se encontró el mock ");
-    }
-    const { body, statusCode, responseType } = mock.response;
-    return res
-      .status(statusCode)
-      .setHeader(
-        "Content-Type",
-        responseType === "JSON" ? "application/json" : "plain/text"
-      )
-      .send(body);
-  });
+  Router.all("*", controller.buildMockResponse);
 
   return Router;
 };

@@ -2,6 +2,7 @@ require("dotenv").config({
   path: "../.env",
 });
 const { json } = require("express");
+const afterwareLogMock = require("./afterware/afterwareLogMock");
 const { routes } = require("./controller");
 const logger = require("./middleware/logger");
 const dynamicMock = require("./modules/dynamic_mock");
@@ -16,6 +17,7 @@ app.use(json());
 app.use(logger.info());
 app.use("/mocko", routes());
 app.use("*", dynamicMock.router());
+app.use(afterwareLogMock.logInfo);
 
 const server = app.listen(PORT, () => {
   console.log(`start listening on port : ${PORT}`);

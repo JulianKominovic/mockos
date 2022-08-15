@@ -7,7 +7,9 @@ const formatter = (req) => {
 module.exports = {
   info: () => {
     return (req, res, next) => {
-      console.log(`[INFO] [${new Date()}] ${formatter(req)}`);
+      const timestamp = new Date();
+      console.log(`[INFO] [${timestamp}] ${formatter(req)}`);
+      res.locals.req_timestamp_init = timestamp;
       next();
     };
   },

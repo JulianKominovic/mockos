@@ -1,0 +1,87 @@
+[
+  {
+    "request": {
+      "fullUrl": "http://localhost:8000/esteno",
+      "method": "GET",
+      "body": {},
+      "params": {},
+      "protocol": "http",
+      "timestamp": "2022-08-15T17:28:27.419Z"
+    },
+    "response": {
+      "method": "GET",
+      "body": "{    \"regex\":false}",
+      "protocol": "http",
+      "timestamp": "2022-08-15T17:28:27.425Z",
+      "responseTimeInMs": 6
+    }
+  },
+  {
+    "request": {
+      "fullUrl": "http://localhost:8000/esteno",
+      "method": "GET",
+      "body": {},
+      "params": {},
+      "protocol": "http",
+      "timestamp": "2022-08-15T17:28:41.239Z"
+    },
+    "response": {
+      "method": "GET",
+      "body": "{    \"regex\":false}",
+      "protocol": "http",
+      "timestamp": "2022-08-15T17:28:41.241Z",
+      "responseTimeInMs": 2
+    }
+  },
+  {
+    "request": {
+      "fullUrl": "http://localhost:8000/esteno",
+      "method": "GET",
+      "body": {},
+      "params": {},
+      "protocol": "http",
+      "timestamp": "2022-08-15T17:29:06.905Z"
+    },
+    "response": {
+      "method": "GET",
+      "body": "{    \"regex\":false}",
+      "protocol": "http",
+      "timestamp": "2022-08-15T17:29:06.910Z",
+      "responseTimeInMs": 5
+    }
+  },
+  {
+    "request": {
+      "fullUrl": "http://localhost:8000/esteno",
+      "method": "GET",
+      "body": {},
+      "params": {},
+      "protocol": "http",
+      "timestamp": "2022-08-15T17:29:26.274Z"
+    },
+    "response": {
+      "method": "GET",
+      "body": "{    \"regex\":false}",
+      "protocol": "http",
+      "timestamp": "2022-08-15T17:29:26.277Z",
+      "responseTimeInMs": 3
+    }
+  },
+  {
+    "request": {
+      "fullUrl": "http://localhost:8000/esteno",
+      "method": "GET",
+      "body": {},
+      "params": {},
+      "protocol": "http",
+      "timestamp": "2022-08-15T17:29:42.322Z"
+    },
+    "response": {
+      "method": "GET",
+      "body": "{    \"regex\":false}",
+      "protocol": "http",
+      "timestamp": "2022-08-15T17:29:42.328Z",
+      "responseTimeInMs": 6
+    }
+  }
+]

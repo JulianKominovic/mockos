@@ -237,6 +237,6 @@ module.exports = {
       mockThatMatches.find((mock) => !mock.wasByRegex) ||
       mockThatMatches.find((mock) => mock.wasByRegex);
 
-    return result.mock;
+    return result?.mock;
   },
 };
