@@ -11,7 +11,7 @@ const useMockPreview = () => {
   const startNewMocko = (collection) => {
     setMockpreview({
       name: "Nuevo mockito",
-      collection,
+      collection: "",
     });
   };
 

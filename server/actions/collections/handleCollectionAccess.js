@@ -219,11 +219,24 @@ module.exports = {
   getActiveMocksByMethodAndUrl: async (method, url, path) => {
     const collections = await getCollections(path);
 
-    return Object.values(collections)
+    const mockThatMatches = [];
+    Object.values(collections)
       .flat()
-      .filter(
-        (collect) =>
-          collect.activated && collect.method === method && collect.url === url
-      );
+      .forEach((collect) => {
+        const regexTest = new RegExp(`^${collect.url}$`, "i").test(url);
+        const simpleCompareTest = collect.url === url;
+
+        if (collect.activated && collect.method === method && regexTest)
+          mockThatMatches.push({
+            mock: collect,
+            wasByRegex: regexTest !== simpleCompareTest,
+          });
+      });
+
+    const result =
+      mockThatMatches.find((mock) => !mock.wasByRegex) ||
+      mockThatMatches.find((mock) => mock.wasByRegex);
+
+    return result.mock;
   },
 };

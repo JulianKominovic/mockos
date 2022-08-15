@@ -5,6 +5,7 @@ import chooseBorderColor from "../logic/chooseBorderColor";
 import useEditor from "../state/useEditor";
 
 function CodeEditor({ initialValue }) {
+  console.log(initialValue);
   const { code, setCode, focused, setFocused, hasError } = useEditor();
   return (
     <>
@@ -13,9 +14,8 @@ function CodeEditor({ initialValue }) {
         hidden
         name="response_body"
         className={hasError ? "has-error" : ""}
-        value={code}
+        value={code || initialValue}
         defaultValue={initialValue}
-        readOnly
       />
       <Editor
         defaultValue={initialValue}

@@ -13,8 +13,8 @@ const router = () => {
   Router.use("*", (req, res, next) => controller.checkOrigin(req, res, next));
   Router.get("*", async (req, res) => {
     const fullUrl = req.protocol + "://" + req.get("host") + req.originalUrl;
-    const [mock] = await getActiveMocksByMethodAndUrl(EnumMethods.GET, fullUrl);
-    console.log(mock);
+    const mock = await getActiveMocksByMethodAndUrl(EnumMethods.GET, fullUrl);
+
     if (!mock) {
       return res.status(400).send("No se encontró el mock ");
     }

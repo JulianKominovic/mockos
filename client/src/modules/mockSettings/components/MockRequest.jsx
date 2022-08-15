@@ -32,7 +32,7 @@ const MockRequest = () => {
           <Input
             clearable
             shadow={false}
-            placeholder="Podés usar expresiones REGEX"
+            placeholder="Podés usar expresiones REGEX para los endpoints"
             width="100%"
             {...INPUTS_STYLES}
             label="Mocko URL"
