@@ -2,13 +2,11 @@ const writeLog = require("../actions/logs/writeLog");
 
 module.exports = {
   logInfo: async (req, res, next) => {
-    console.log("AFTERWARE");
     const { mockFound, req_timestamp_init } = res.locals;
 
     if (mockFound) {
-      const readFile = await writeLog.readLog(mockFound.id);
+      const readFile = await writeLog.readLog();
       const logs = Object.values(readFile).length > 0 ? readFile : [];
-      console.log(logs);
       const fullUrl = req.protocol + "://" + req.get("host") + req.originalUrl;
 
       const responseTimestamp = new Date();
@@ -26,6 +24,7 @@ module.exports = {
         response: {
           method: mockFound.method,
           body: mockFound.response.body,
+          status: mockFound.response.statusCode,
           protocol: "http",
           timestamp: responseTimestamp,
           responseTimeInMs: Math.abs(responseTimestamp - req_timestamp_init),
@@ -34,7 +33,7 @@ module.exports = {
 
       logs.push(logData);
 
-      await writeLog.writeLog(mockFound.id, logs);
+      await writeLog.writeLog(logs);
     }
   },
 };

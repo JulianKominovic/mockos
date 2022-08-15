@@ -3,14 +3,14 @@ const saveJson = require("../filesystem/saveJson");
 const fs = require("fs/promises");
 const path = require("path");
 module.exports = {
-  writeLog: async (mockId, info) => {
+  writeLog: async (info) => {
     await fs.mkdir(path.resolve(`./store/logs/`), {
       recursive: true,
     });
 
-    await saveJson(`logs/${mockId}`, info);
+    await saveJson(`logs/logs`, info);
   },
-  readLog: async (mockId) => {
-    return await readJson(`logs/${mockId}`);
+  readLog: async () => {
+    return await readJson(`logs/logs`);
   },
 };
