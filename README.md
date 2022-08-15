@@ -1,4 +1,5 @@
-![Mockos logo](https://user-images.githubusercontent.com/70329467/184714485-ebb8e99f-5559-4590-9225-2507b4e6b04c.png)
+![Group 1 (3)](https://user-images.githubusercontent.com/70329467/184715689-d8ed3121-0dae-4f03-8dd2-9e5e53f15c4a.png)
+
 
 
 
