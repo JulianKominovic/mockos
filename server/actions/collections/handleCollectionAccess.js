@@ -127,7 +127,8 @@ module.exports = {
     return;
   },
   addMock: async (mock) => {
-    const collections = await getCollections();
+    const file = await getCollections();
+    const collections = Object.keys(file).length > 0 ? file : {};
 
     if (mock.collection) {
       if (

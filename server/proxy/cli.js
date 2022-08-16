@@ -24,7 +24,14 @@ const addProxyCommand = async (src) => {
   console.log("+ ADDING PORT FORWARDING RULES");
   console.log(`FOR PORT => ${src}`);
   await spawnCommand(
-    `${sudoAutoPassword()} iptables -t nat -L -n -v | grep "${src}" || ${sudoAutoPassword()} iptables -t nat -A OUTPUT -o lo -p tcp --dport ${src} -j REDIRECT --to-port 5000`
+    `${sudoAutoPassword()} iptables -t nat -L -n -v | grep "${src}" || ${sudoAutoPassword()} iptables -t nat -A OUTPUT -o lo -p tcp --dport ${src} -j REDIRECT --to-port ${
+      process.env.PORT
+    }`
+  );
+  await spawnCommand(
+    `${sudoAutoPassword()} ip6tables -t nat -L -n -v | grep "${src}" || ${sudoAutoPassword()} iptables -t nat -A OUTPUT -o lo -p tcp --dport ${src} -j REDIRECT --to-port ${
+      process.env.PORT
+    }`
   );
   const ports = fileSystem.read();
   if (ports?.findIndex((p) => p === src) === -1) ports?.push(src);
@@ -36,7 +43,14 @@ const removeProxyCommand = async (src) => {
   console.log(`FOR PORT => ${src}`);
 
   await spawnCommand(
-    `${sudoAutoPassword()} iptables -t nat -D OUTPUT -o lo -p tcp --dport ${src} -j REDIRECT --to-port 5000`
+    `${sudoAutoPassword()} iptables -t nat -D OUTPUT -o lo -p tcp --dport ${src} -j REDIRECT --to-port ${
+      process.env.PORT
+    }`
+  );
+  await spawnCommand(
+    `${sudoAutoPassword()} ip6tables -t nat -D OUTPUT -o lo -p tcp --dport ${src} -j REDIRECT --to-port ${
+      process.env.PORT
+    }`
   );
   const ports = fileSystem.read();
 
